@@ -8,12 +8,11 @@ In Task0 we are getting items from a list at specified indeces - the first and t
 The worst case efficiency of this solution is O(1), ie constant time. Getting an item from a list
 at a specified index will always take constant time, no matter how long the list is.
 
-Task1.py: O(n^2)
-In Task1 we are iterating through the complete list of numbers in the records in order to determine
-if the number is already a member of the unique list of numbers. The for loop is iterating over every element in the
-list of numbers, so this has O(n) time complexity. Also, a list lookup for each number is then performed within the for loop.
-The efficiency of a list lookup is O(n) since the desired element may be at the end of the list. So there is an O(n) operation
-encased in an O(n) for loop. Therefore, the worst case efficiency of this solution is O(n^2), ie quadratic time.
+Task1.py: O(n)
+In Task1 the for loops within the list comprehensions are iterating over every element in the
+list of numbers, so this has O(n) time complexity. Through converting the numbers_in_records list to a set and getting the unique
+numbers that way, we avoid having to perform another loop which potentially increases the complexity depending on the operations
+within the loop. Therefore, the worst case efficiency of this solution is O(n), ie linear time.
 
 Task2.py: O(n)
 In Task2 we are iterating through a nested list of phone numbers and their durations using a for loop, which we know is O(n) time

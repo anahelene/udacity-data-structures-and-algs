@@ -26,14 +26,6 @@ answering_texts = [x[1] for x in texts]
 
 numbers_in_records = calling_calls + answering_calls + calling_texts + answering_texts
 
-unique_numbers = []
-
-for number in numbers_in_records:
-    if number not in unique_numbers:
-        unique_numbers.append(number)
-    else:
-        continue
-
-count_unique_numbers = len(unique_numbers)
+count_unique_numbers = len(set(numbers_in_records))
 
 print("There are {} different telephone numbers in the records.".format(count_unique_numbers))
