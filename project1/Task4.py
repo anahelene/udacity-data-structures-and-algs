@@ -42,7 +42,7 @@ for telemarketer in telemarketers:
     else:
         continue
 
-unique_telemarkers_lst = unique_telemarkers.keys()
+unique_telemarkers_lst = list(unique_telemarkers.keys())
 unique_telemarkers_lst.sort()
 
 print("These numbers could be telemarketers: ")

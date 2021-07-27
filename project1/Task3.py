@@ -59,7 +59,7 @@ for number in ans_calls:
     if code not in code_dict:
         code_dict[code]=True
 
-code_values_lst=code_dict.keys()
+code_values_lst=list(code_dict.keys())
 code_values_lst.sort()
 
 print('The numbers called by people in Bangalore have codes:')
