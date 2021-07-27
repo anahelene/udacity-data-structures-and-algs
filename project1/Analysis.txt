@@ -1,0 +1,46 @@
+Calculate Big O
+Once you have completed your solution for each problem,
+perform a run time analysis (Worst Case Big-O Notation) of your solution.
+Document this for each problem and include this in your submission.
+
+Task0.py: O(1)
+In Task0 we are getting items from a list at specified indeces - the first and the last indeces.
+The worst case efficiency of this solution is O(1), ie constant time. Getting an item from a list
+at a specified index will always take constant time, no matter how long the list is.
+
+Task1.py: O(n^2)
+In Task1 we are iterating through the complete list of numbers in the records in order to determine
+if the number is already a member of the unique list of numbers. The for loop is iterating over every element in the
+list of numbers, so this has O(n) time complexity. Also, a list lookup for each number is then performed within the for loop.
+The efficiency of a list lookup is O(n) since the desired element may be at the end of the list. So there is an O(n) operation
+encased in an O(n) for loop. Therefore, the worst case efficiency of this solution is O(n^2), ie quadratic time.
+
+Task2.py: O(n)
+In Task2 we are iterating through a nested list of phone numbers and their durations using a for loop, which we know is O(n) time
+complexity. Within the for loop, we perform a dictionary lookup, which due to the underlying hash function, has a O(1) time complexity.
+Therefore, the worst case efficiency of this solution is O(n), ie linear time. If the calls_dict was actually a calls_list (of type
+list), then the efficiency of this solution would be O(n^2). As I referenced above, a list lookup is O(n) operation. So we would have
+an O(n) within an O(n) which is O(n^2). But since I opted to use the dictionary here, the time efficiency is better by a whole order
+and we have O(n) linear time complexity for the whole solution.
+
+Task3.py: O(nlog(n))
+In Task3 we are iterating through the list of answering numbers of calls coming from Bangalore.
+On each iteration we are getting the area code, then adding the code to a unique list of codes. So far this algorithm would be
+O(n) complexity since it iterates through each input n. Within each iteration, we perform a dictionary lookup which has O(1) complexity.
+So far in the worst case we have a O(n) complexity. We also use a list lookup to accomplish part 2, which is O(n) time complex.
+However, the list of area codes is sorted using the built in Python sort method, which uses the Timsort algorithm. Timsort has a
+worst case complexity O(nlog(n)). This makes the worst case time complexity of this solution O(nlog(n)) also known as quasilinear time.
+In the limit as n goes to infinity, O(nlog(n)) grows faster than O(n) meaning O(nlog(n)) operations take a longer time
+to complete than O(n) operations for the same n.
+
+Task4.py: O(n^2)
+In Task4.py we use list comprehension to determine the list of possible telemarketers. The first four instances of list comprehension
+(for defining the outgoing/answering calls and texts) have a time complexity of O(n) since we iterate through each n in calls and texts.
+The last use of list comprehension, used to define the telemarketers, uses a list lookup within a for loop. This bumps up the overall complexity
+to O(n^2) since within each iteration of the for loop a lookup of the number in the non-telemarketers list is performed. Next the unique telemarketers
+are identified using a for loop and a dictionary lookup which has an O(n) complexity. So far the overall worst case complexity is still O(n^2), since
+O(n^2) operations are an order of magnitude slower than O(n) operations. Finally, the list is sorted using a sort method which has an O(nlog(n))
+time complexity. Comparing a graph of y=x^2 to a graph of y=xlog(x), we can see that y=x^2 grows much faster than y=xlog(x) (ie, x^2 has a worse
+time complexity). We can also plug in values for n to determine which algorithmic complexity is worse. Say n=10. The quadratic expression
+gives us 10^2 which is 100. The quasilinear nlogn gives us 10*log(10) = 10*1 = 10. We can plug in increasing values of n to see that the
+quadratic time complexity will always be worse than the quasilinear. Therefore, the worst case time complexity of this solution is O(n^2).
