@@ -20,7 +20,7 @@ Print messages:
 """
 
 first_texts = texts[0]
-last_calls = calls[len(calls)-1]
+last_calls = calls[-1]
 
-print("First record of texts, {} texts {} at time {}".format(first_texts[0], first_texts[1], first_texts[2]))
-print("Last record of calls, {} calls {} at time {}, lasting {} seconds".format(last_calls[0], last_calls[1], last_calls[2], last_calls[3]))
+print("First record of texts, {} texts {} at time {}".format(*first_texts))
+print("Last record of calls, {} calls {} at time {}, lasting {} seconds".format(*last_calls))
