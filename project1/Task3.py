@@ -51,7 +51,7 @@ ans_calls = [x[1] for x in calls if x[0] in bang_calls]
 code_dict={}
 for number in ans_calls:
     if '(' == number[0]:
-        code = number[1:4]
+        code = number.split(')')[0].split('(')[1]
     elif ' ' == number[5]:
         code = number[0:4]
     elif number[0:3] == '140':
