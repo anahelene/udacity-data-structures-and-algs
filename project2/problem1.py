@@ -103,12 +103,11 @@ class LRU_Cache(object):
             self.usage_tracker.enqueue(new_node)
             self.size += 1
 
-    # def __repr__(self):
-    #     for key, node in self.cache.items():
-    #         print('{}:[key:{}, value:{}]'.format(key, node.key, node.value))
-    #         print('+')
-    #
-    #     return str(self.cache)
+    def __repr__(self):
+        printed_str=''
+        for key, node in self.cache.items():
+            printed_str += '{}:[key:{}, value:{}], '.format(key, node.key, node.value)
+        return '{'+printed_str+'}'
 
 
 our_cache = LRU_Cache(5)
@@ -117,19 +116,32 @@ our_cache.set(1, 1);
 our_cache.set(2, 2);
 our_cache.set(3, 3);
 our_cache.set(4, 4);
+print(our_cache)
 
-assert(our_cache.get(1)==1)      # returns 1
-assert(our_cache.get(2)==2)       # returns 2
-assert(our_cache.get(9)==int('-1'))      # returns -1 because 9 is not present in the cache
+print(our_cache.get(1))
+# returns 1
+
+print(our_cache.get(2))
+# returns 2
+
+print(our_cache.get(9))
+# returns -1 because 9 is not present in the cache
+
 our_cache.set(5, 5)
 our_cache.set(6, 6)
-assert(our_cache.get(3)==int('-1'))      # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
+print(our_cache)
+
+print(our_cache.get(3))
+# returns -1 because the cache reached it's capacity and 3 was the least recently used entry
 our_cache.set(7, 7)
-#print(our_cache)
-assert(our_cache.get(4)==int('-1'))
-our_cache.set(8, 8)
-#print(our_cache)
-our_cache.set(9, 9)
-#print(our_cache)
-our_cache.set(10, 10)
-#print(our_cache)
+print(our_cache)
+
+print(our_cache.get(4))
+# returns -1 because the cache reached it's capacity and 4 was the least recently used entry
+
+our_cache.set(9, 5)
+#doesnt set 9 because key 9 is already in the cache.
+print(our_cache)
+
+print(our_cache.get(100))
+#returns -1 because the cache does not contain the key 100.
