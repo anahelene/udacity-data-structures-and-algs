@@ -1,0 +1,10 @@
+# Explanation of Approach:
+I implemented a LRU Cache using a dictionary (or hash map) of key value pairs where each value is a reference to a node in a usage tracker queue. Each node contains key, value, next, and previous attributes. I knew I had to use a dictionary as the main structure of the cache in order to maintain efficient O(1) lookups that are required in the get and set operations. I also knew I had to use a queue data structure in order to keep track of the usage of each of the elements over time. I imagined a queue where each time an element is used (either get or set), it is sent to "the back of the line" and assumes the most recently used status. The other elements are shifted up a spot in the queue and the least recently used element would be at the front of the queue. I chose to implement the queue as a doubly linked list, so I could remove/move nodes around while maintaining an O(1) time efficiency and avoiding O(n) loops (like I would have to do with the singly linked list implementation of a queue).
+
+I chose to have separate Node and Queue classes so that I could create readable, maintainable code with clear levels of abstraction. I chose to keep the Queue class generic in terms of its variable and function names so that it could be potentially reused outside of the context of the LRU cache, if this code were in a shared library.
+
+#Time complexity
+The time complexity of this solution is O(1). The dictionary lookups in the get and set methods are all O(1) due to the underlying hash function used. The enqueue, dequeue, and remove methods of the Queue class are also all O(1) since we are merely shifting pointers in the linked list around.
+
+#Space complexity
+The space complexity of my solution is O(2n) or rounded to the nearest order just O(n) where n is the capacity. We will have a dictionary that uses no more than n cells in memory for the key value pairs. The values themselves are references to linked list nodes that are stored elsewhere in memory, so thats another set of n cells.
