@@ -1,9 +1,9 @@
 #Explanation of Approach
-I knew I wanted to create nodes that could be both in the sorted queue and in the tree at once.
+I knew I had to create nodes that could be both in the sorted queue and in the tree at once. I laid out each of the major steps of the algorithm first, including getting the character count, creating the sorted queue, building the tree, traversing the tree to get the bits, then serializing the input data with each of the codes. I knew I wanted a HuffmanNode class that would have the properties of both of these structures. This way the nodes could easily and fluidly exist in both structures. I also knew re-inserting the summed parent node back into the queue in order would be a challenge. I wanted to be able to abstract away from having to think about that insertion logic for every case, so I created an insert method that inserts into the queue in order.
 
 #Time complexity
-get_frequency_of_chars O(n)
-building the sorted queue O(n^2) - iterating through the dict, insert func in class can potentially iterate through mostly all the nodes before inserting into the list.
-traversing the tree for encoding O(n) because we touch every node.
+The time complexity of my solution in the worst case is O(n^2). This stems from the insert method of the queue that is called when building the queue. While looping through the character count to build the queue (an O(n) operation), the insert method might also have to iterate through the existing elements in the sorted queue. This is not quite O(n^2) exactly, because of the easy O(1) inserts if the element is the first or last element to be inserted into the sorted queue. This makes the overall solution slightly better than O(n^2).
+The rest of the operations are never worse than O(n^2). The get_frequency_of_chars function is O(n) and traversing the tree for encoding is O(n) because we touch every character/node only once in each case.
+
 #Space complexity
-The space complexity of the solution is O(2n-1) or just O(n). This is because we are creating a linked list that contains 2n-1 nodes where n is the number of characters in the input string.
+The space complexity of the solution is O(2n-1) or just O(n). This is because we are creating a linked list that contains 2n-1 nodes where n is the number of characters in the input string. The queue containing all the characters is n elements long, when inserted into the tree the addition of the parent elements brings the total up to 2n-1 elements.

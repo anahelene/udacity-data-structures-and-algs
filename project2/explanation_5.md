@@ -5,4 +5,4 @@ The blockchain is just a linked list with extra attributes and hashing. I implem
 The time complexity of creating a blockchain using my class is O(1). We just need to consider the calculation time of the hash value and the addition of values to a linked list which both take constant time. The to_list method of my blockchain class is O(n) however, since we loop through and access each of the blocks.
 
 #Space complexity
-The space complexity is O(n)?
+The space complexity is O(n), where n is the number of blocks in the blockchain.

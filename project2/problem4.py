@@ -50,7 +50,7 @@ def is_user_in_group(user, group):
 
     all_groups = get_groups(group, all_groups)
 
-    all_users = []
+    all_users = [] #could be a set/dict.
     for sub_group in all_groups:
         users = sub_group.get_users()
         all_users = all_users + users

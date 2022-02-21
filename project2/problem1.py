@@ -87,7 +87,7 @@ class LRU_Cache(object):
 
             return self.cache[key].value
 
-        return int('-1')
+        return -1
 
     def set(self, key, value):
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item.
