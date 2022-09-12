@@ -1,5 +1,6 @@
 import os
 
+
 def find_files_helper(suffix, path, list_of_paths):
     if not os.path.isdir(path):
         return list_of_paths
@@ -13,6 +14,7 @@ def find_files_helper(suffix, path, list_of_paths):
             find_files_helper(suffix, path_name, list_of_paths)
 
     return list_of_paths
+
 
 def find_files(suffix, path):
     """
@@ -35,13 +37,13 @@ def find_files(suffix, path):
     return list_of_paths
 
 print(find_files('.h','testdir'))
-#expected output is ['testdir/subdir3/subsubdir1/b.h', 'testdir/subdir5/a.h', 'testdir/t1.h', 'testdir/subdir1/a.h']
+# expected output is ['testdir/subdir3/subsubdir1/b.h', 'testdir/subdir5/a.h', 'testdir/t1.h', 'testdir/subdir1/a.h']
 
 print(find_files('.c','testdir'))
-#expected output is ['testdir/subdir3/subsubdir1/b.c', 'testdir/t1.c', 'testdir/subdir5/a.c', 'testdir/subdir1/a.c']
+# expected output is ['testdir/subdir3/subsubdir1/b.c', 'testdir/t1.c', 'testdir/subdir5/a.c', 'testdir/subdir1/a.c']
 
 print(find_files('.py', 'testdir'))
-#expected output is [], since there are no .py files in testdir
+# expected output is [], since there are no .py files in testdir
 
 print(find_files('.py', 'problem2.py'))
-#expected output is [], since problem2.py is not a directory.
+# expected output is [], since problem2.py is not a directory.

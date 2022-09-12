@@ -106,17 +106,18 @@ def encoding_traverse_helper(node, code_dict, huffman_code):
     Employs post-order DFS to get to all the leaves and collect the bits along the way.
     '''
     if node:
-        #if not the root node, get the huffman bit for the node and add it to the running string.
+        # if not the root node, get the huffman bit for the node and add it to the running string.
         if node.get_huffman_bit() is not None:
             huffman_code = huffman_code + str(node.get_huffman_bit())
-        #traverse the left subtree
+        # traverse the left subtree
         encoding_traverse_helper(node.get_left_child(),  code_dict, huffman_code)
-        #traverse the right subtree
+        # traverse the right subtree
         encoding_traverse_helper(node.get_right_child(), code_dict, huffman_code)
-        #at a leaf, log the huffman code and reset it for the next leaf.
+        # at a leaf, log the huffman code and reset it for the next leaf.
         if node.get_char()!='':
             code_dict[node.get_char()] = huffman_code
             huffman_code = ''
+            print(code_dict)
 
         return code_dict
 

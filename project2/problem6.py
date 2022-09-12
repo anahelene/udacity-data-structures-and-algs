@@ -90,35 +90,64 @@ def intersection(llist_1, llist_2): #O(n)
 linked_list_1 = LinkedList()
 linked_list_2 = LinkedList()
 
-element_1 = [3,2,4,35,6,65,6,4,3,21]
-element_2 = [6,32,4,9,6,1,11,21,1]
-print(set(element_1).union(set(element_2)))
-print(set(element_1).intersection(set(element_2)))
+list_1 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 21]
+list_2 = [6, 32, 4, 9, 6, 1, 11, 21, 1]
+print(set(list_1).union(set(list_2)))
+# set([32, 65, 2, 3, 4, 6, 1, 9, 11, 35, 21])
+print(set(list_1).intersection(set(list_2)))
+# set([4, 21, 6])
 
-for i in element_1:
+for i in list_1:
     linked_list_1.append(i)
 
-for i in element_2:
+for i in list_2:
     linked_list_2.append(i)
 
-print(union(linked_list_1,linked_list_2))
-print(intersection(linked_list_1,linked_list_2))
+print(union(linked_list_1, linked_list_2))
+# 32 -> 65 -> 2 -> 35 -> 4 -> 6 -> 1 -> 9 -> 11 -> 3 -> 21 ->
+print(intersection(linked_list_1, linked_list_2))
+# 4 -> 21 -> 6 ->
 
 # Test case 2
 
 linked_list_3 = LinkedList()
 linked_list_4 = LinkedList()
 
-element_1 = [3,2,4,35,6,65,6,4,3,23]
-element_2 = [1,7,8,9,11,21,1]
-print(set(element_1).union(set(element_2)))
-print(set(element_1).intersection(set(element_2)))
-
-for i in element_1:
+list_1 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 23]
+list_2 = [1, 7, 8, 9, 11, 21, 1]
+print(set(list_1).union(set(list_2)))
+# set([65, 2, 3, 4, 6, 1, 8, 9, 7, 11, 35, 21, 23])
+print(set(list_1).intersection(set(list_2)))
+# set([])
+for i in list_1:
     linked_list_3.append(i)
 
-for i in element_2:
+for i in list_2:
     linked_list_4.append(i)
 
-print (union(linked_list_3,linked_list_4))
-print (intersection(linked_list_3,linked_list_4))
+print(union(linked_list_3, linked_list_4))
+# 65 -> 2 -> 35 -> 4 -> 6 -> 1 -> 8 -> 9 -> 7 -> 11 -> 3 -> 21 -> 23 ->
+print(intersection(linked_list_3, linked_list_4))
+# None
+
+# Test case 3
+
+linked_list_5 = LinkedList()
+linked_list_6 = LinkedList()
+
+list_1 = []
+list_2 = []
+print(set(list_1).union(set(list_2)))
+# set([])
+print(set(list_1).intersection(set(list_2)))
+# set([])
+for i in list_1:
+    linked_list_5.append(i)
+
+for i in list_2:
+    linked_list_6.append(i)
+
+print(union(linked_list_5, linked_list_6))
+# None
+print(intersection(linked_list_5, linked_list_6))
+# None

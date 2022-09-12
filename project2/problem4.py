@@ -61,14 +61,14 @@ def is_user_in_group(user, group):
         return False
 
 print(is_user_in_group('sub_child_user', parent))
-#True
+# True
 
 parent = Group("parent")
 child = Group("child")
 sub_child = Group("subchild")
 
 sub_child.add_user("sub_child_user")
-sub_child.add_user( "sub_child_user_1")
+sub_child.add_user("sub_child_user_1")
 sub_child.add_user("sub_child_user_2")
 
 child.add_group(sub_child)
@@ -81,6 +81,12 @@ parent.add_user('Barbara')
 parent.add_user('Daniel')
 
 print(is_user_in_group('Emily', parent))
-#False
+# False
 print(is_user_in_group('Daniel', parent))
-#True
+# True
+
+print(is_user_in_group('', parent))
+# False
+
+print(is_user_in_group('Daniel', child))
+# False

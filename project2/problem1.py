@@ -11,12 +11,13 @@ class Node():
 class Queue():
 
     def __init__(self):
-        #head will be used as the LRU pointer
+        # head will be used as the LRU pointer
         self.head = None
-        #tail will be used as the MRU pointer
+        # tail will be used as the MRU pointer
         self.tail = None
         self.num_elements = 0
-    #enqueue MRU item on the tail
+
+    # enqueue MRU item on the tail
     def enqueue(self, node):
         if self.head is None:
             self.head = node
@@ -26,7 +27,8 @@ class Queue():
             node.previous = self.tail
             self.tail = self.tail.next
         self.num_elements += 1
-    #dequeue LRU item from the head.
+
+    # dequeue LRU item from the head.
     def dequeue(self):
         if self.is_empty():
             return None
@@ -45,7 +47,7 @@ class Queue():
             self.num_elements -= 1
 
         elif self.tail == node:
-            #this case wont ever be used in the LRU cache implementation, but for including for completeness of the queue object.
+            # this case wont ever be used in the LRU cache implementation, but for including for completeness of the queue object.
             self.tail = self.tail.previous
             self.tail.next = None
             self.num_elements -= 1
@@ -66,7 +68,7 @@ class Queue():
 class LRU_Cache(object):
 
     def __init__(self, capacity):
-        #dictionary of key:node pairs.
+        # dictionary of key:node pairs.
         self.cache = dict()
         self.size = 0
         self.capacity = capacity
@@ -76,7 +78,7 @@ class LRU_Cache(object):
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent.
         if key in self.cache:
-            #bring to the front of the queue.
+            # bring to the front of the queue.
             node = self.cache[key]
 
             if self.usage_tracker.tail == node:
@@ -104,7 +106,7 @@ class LRU_Cache(object):
             self.size += 1
 
     def __repr__(self):
-        printed_str=''
+        printed_str = ''
         for key, node in self.cache.items():
             printed_str += '{}:[key:{}, value:{}], '.format(key, node.key, node.value)
         return '{'+printed_str+'}'
@@ -140,8 +142,8 @@ print(our_cache.get(4))
 # returns -1 because the cache reached it's capacity and 4 was the least recently used entry
 
 our_cache.set(9, 5)
-#doesnt set 9 because key 9 is already in the cache.
+# doesnt set 9 because key 9 is already in the cache.
 print(our_cache)
 
 print(our_cache.get(100))
-#returns -1 because the cache does not contain the key 100.
+# returns -1 because the cache does not contain the key 100.
