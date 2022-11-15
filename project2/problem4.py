@@ -46,6 +46,11 @@ def is_user_in_group(user, group):
       user(str): user name/id
       group(class:Group): group to check user membership against
     """
+    # validate group is a group type.
+    if not isinstance(group, Group):
+        print('Input group is not a valid group object.')
+        return False
+
     all_groups = [group]
 
     all_groups = get_groups(group, all_groups)
@@ -89,4 +94,8 @@ print(is_user_in_group('', parent))
 # False
 
 print(is_user_in_group('Daniel', child))
+# False
+
+# input group is not valid.
+print(is_user_in_group('', ''))
 # False

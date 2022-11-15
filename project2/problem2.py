@@ -47,3 +47,6 @@ print(find_files('.py', 'testdir'))
 
 print(find_files('.py', 'problem2.py'))
 # expected output is [], since problem2.py is not a directory.
+
+print(find_files('', ''))
+# expected output is [] since the empty strings are not valid suffixes nor valid path.

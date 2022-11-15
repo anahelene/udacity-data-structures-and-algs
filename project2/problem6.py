@@ -151,3 +151,25 @@ print(union(linked_list_5, linked_list_6))
 # None
 print(intersection(linked_list_5, linked_list_6))
 # None
+
+# Test case 4
+
+linked_list_5 = LinkedList()
+linked_list_6 = LinkedList()
+
+list_1 = [1]
+list_2 = []
+print(set(list_1).union(set(list_2)))
+# set([])
+print(set(list_1).intersection(set(list_2)))
+# set([])
+for i in list_1:
+    linked_list_5.append(i)
+
+for i in list_2:
+    linked_list_6.append(i)
+
+print(union(linked_list_5, linked_list_6))
+# 1 ->
+print(intersection(linked_list_5, linked_list_6))
+# None

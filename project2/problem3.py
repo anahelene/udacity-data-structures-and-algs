@@ -16,6 +16,9 @@ class HuffmanNode():
     def get_char(self):
         return self.char
 
+    def get_count(self):
+        return self.count
+
     def set_huffman_bit(self, bit):
         self.huffman_bit = bit
 
@@ -117,7 +120,6 @@ def encoding_traverse_helper(node, code_dict, huffman_code):
         if node.get_char()!='':
             code_dict[node.get_char()] = huffman_code
             huffman_code = ''
-            print(code_dict)
 
         return code_dict
 
@@ -135,12 +137,14 @@ def serialize_encoded_data(code_dict, data):
 
 def huffman_encoding(data):
     char_count = get_frequency_of_chars(data)
-
     #build sorted list
     sorted_queue = SortedQueue()
     for char, count in char_count.items():
         new_node = HuffmanNode(char, count)
         sorted_queue.insert(new_node)
+
+    if sorted_queue.size == 1:
+        root = sorted_queue.pop()
 
     #build Huffman tree
     while sorted_queue.size > 1:
@@ -169,6 +173,12 @@ def huffman_decoding(data, tree):
 
     decoded_data = ''
     current_node = tree
+
+    # if there are no bits, then we know tree is made up of only one node, ie one character.
+    if not data:
+        decoded_data = current_node.get_char() * current_node.get_count()
+        return decoded_data
+
     for bit in data:
         if not current_node.has_left_child() and not current_node.has_right_child():
             decoded_data = decoded_data + current_node.get_char()
@@ -242,3 +252,41 @@ if __name__ == "__main__":
     #The size of the decoded data is: 73
     print ("The content of the encoded data is: {}\n".format(decoded_data))
     #The content of the encoded data is: blabla''blablablablaaaaa
+
+    an_edge_case = 'aaaaaaaa'
+
+    print ("The size of the data is: {}\n".format(sys.getsizeof(an_edge_case)))
+    #The size of the data is: 57
+    print ("The content of the data is: {}\n".format(an_edge_case))
+    #The content of the data is: aaaaaaaa
+    encoded_data, tree = huffman_encoding(an_edge_case)
+
+    print ("The size of the encoded data is: {}\n".format(sys.getsizeof(encoded_data)))
+    #The size of the encoded data is: 49
+    print ("The content of the encoded data is: {}\n".format(encoded_data))
+    #The content of the encoded data is:
+    decoded_data = huffman_decoding(encoded_data, tree)
+
+    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    #The size of the decoded data is: 57
+    print ("The content of the encoded data is: {}\n".format(decoded_data))
+    #The content of the encoded data is: aaaaaaaa
+
+    another_edge_case = '.a'
+
+    print ("The size of the data is: {}\n".format(sys.getsizeof(another_edge_case)))
+    #The size of the data is: 51
+    print ("The content of the data is: {}\n".format(another_edge_case))
+    #The content of the data is: .a
+    encoded_data, tree = huffman_encoding(another_edge_case)
+
+    print ("The size of the encoded data is: {}\n".format(sys.getsizeof(encoded_data)))
+    #The size of the encoded data is: 51
+    print ("The content of the encoded data is: {}\n".format(encoded_data))
+    #The content of the encoded data is: 01
+    decoded_data = huffman_decoding(encoded_data, tree)
+
+    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    #The size of the decoded data is: 51
+    print ("The content of the encoded data is: {}\n".format(decoded_data))
+    #The content of the encoded data is: .a

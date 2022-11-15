@@ -92,10 +92,15 @@ class LRU_Cache(object):
         return -1
 
     def set(self, key, value):
+        # catch edge case.
+        if self.capacity == 0:
+            print('Cache capacity is set to 0, can not set any items.')
+            return
+
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item.
         if key not in self.cache:
             if self.size == self.capacity:
-                logging.info('Cache at capacity, removing the least recently used node')
+                print('Cache at capacity, removing the least recently used node')
                 lru_key = self.usage_tracker.dequeue()
                 self.cache.pop(lru_key)
                 self.size -= 1
@@ -147,3 +152,12 @@ print(our_cache)
 
 print(our_cache.get(100))
 # returns -1 because the cache does not contain the key 100.
+
+# setting edge case of a cache of capacity 0
+another_cache = LRU_Cache(0)
+
+another_cache.set(1, 1);
+# doesn't set anything.
+
+print(our_cache.get(1))
+# returns -1 because 1 is not in the cache.
